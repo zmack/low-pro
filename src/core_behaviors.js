@@ -14,6 +14,10 @@ Remote.Base = {
     this._bindCallbacks();
   },
   _makeRequest : function(options) {
+    if (options.confirm && !confirm(options.confirm)) {
+      return false;
+    }
+
     if (options.update) new Ajax.Updater(options.update, options.url, options);
     else new Ajax.Request(options.url, options);
     return false;
